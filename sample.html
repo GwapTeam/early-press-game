@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <title>sample</title>
+
+    <style>
+        button {
+            width: 80px;
+            height: 32px;
+            border: none;
+            box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
+            border-radius: 3px;
+            color: white;
+            font-size: 18px;
+            background: skyblue;
+            cursor: pointer;
+        }
+        body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        body > * {
+            width: 50vw
+        }
+        body > :first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        table {
+            width: 400px;
+            height: 400px;
+        }
+        td {
+            text-align: center;
+            font-size: 28px;
+            background: orange;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #current-number {
+            font-size: 48px;
+        
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div id="current-number">0</div>
+    <button onclick="start()">start</button>
+</div>
+<table id="main-board">
+</table>
+
+</body>
+
+<script>
+    let currentNum = 0;
+    let currentNumberElement = document.getElementById("current-number");
+
+    var finish = () => {
+        alert('finish');    
+    }
+
+    var numberClick = (num) =>  {
+        if (num == currentNum + 1) {
+            if (num == 30) {
+                finish();
+            } else {
+                let element = document.getElementById(num);
+                element.style.visibility = "hidden";
+                currentNum++;
+                currentNumberElement.innerText = currentNum;
+            }
+        }
+    }
+
+    let mainBoard = document.getElementById("main-board");
+    var start = () => {
+        let array = Array.from(Array(30),(e,i) => i+1).sort(() => Math.random()*100 - Math.random()*100);
+        
+        while (mainBoard.firstChild)
+            mainBoard.removeChild(mainBoard.firstChild)
+
+        currentNum = 0;
+        currentNumberElement.innerText = "0";
+        // 5 * 6
+        let index = 0;
+        for (let x=0; x < 5 ; x++) {
+            let row = document.createElement("tr");
+            for (let y=0; y < 6; y++) {
+                let column = document.createElement("td");
+                column.innerText = array[index];
+                column.id        = array[index];
+
+                let num = array[index];
+                column.onclick   = _ => numberClick(num)
+                row.appendChild(column);
+                index++;
+            }
+            mainBoard.appendChild(row);
+        }
+
+    }
+
+
+</script>
+
+</html>
+
