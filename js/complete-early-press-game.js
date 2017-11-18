@@ -11,7 +11,7 @@ function start() {
 		currentNumber = 0;
 		currentNumberElement.innerText = currentNumber;
 
-		var listNumber = new Array();
+		var listNumber = [];
 		for(var i = 0; i < cellNumber; i++) {
 				listNumber.push(i + 1);
 		}
