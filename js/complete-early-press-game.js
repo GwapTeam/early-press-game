@@ -2,6 +2,7 @@ var cellNumber = 25;
 var currentNumber;
 var currentNumberElement = document.getElementById("current-number");
 var mainBoard = document.getElementById("main-board");
+var startButton = document.getElementById("start-button");
 var listNumber = [];
 
 function start() {
@@ -14,7 +15,7 @@ function start() {
     for(var i = 0; i < cellNumber; i++) {
         listNumber.push(i + 1);
     }
-    
+
     for(var i = 0; i < 5; i++) {
         var row = document.createElement("tr");
         for(var j = 0; j < 5; j++) {
