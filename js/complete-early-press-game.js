@@ -14,32 +14,29 @@ function start() {
     for(var i = 0; i < cellNumber; i++) {
         listNumber.push(i + 1);
     }
+    
     for(var i = 0; i < 5; i++) {
         var row = document.createElement("tr");
         for(var j = 0; j < 5; j++) {
             var column = document.createElement("td");
             var randomNumber = Math.floor(Math.random() * listNumber.length);
             column.innerText = listNumber[randomNumber];
-            column.id = listNumber[randomNumber];
-            var num = listNumber[randomNumber];
+            column.onclick = checkNumber;
             listNumber.splice(randomNumber, 1);
-            column.onclick = checkNumber(num);
             row.appendChild(column);
         }
         mainBoard.appendChild(row);
     }
 }
 
-function checkNumber(num) {
-    return function() {
-        if(num == (currentNumber + 1)) {
-            currentNumber++;
-            currentNumberElement.innerText = currentNumber;
-            var element = document.getElementById(num);
-            element.style.visibility = "hidden";
-            if(num == cellNumber) {
-                alert("クリア！！");
-            }
+function checkNumber(event) {
+    var num = event.target.innerText;
+    if(num == (currentNumber + 1)) {
+        currentNumber++;
+        currentNumberElement.innerText = currentNumber;
+        event.target.style.visibility = "hidden";
+        if(num == cellNumber) {
+            alert("クリア！！");
         }
     }
 }
