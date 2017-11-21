@@ -1,18 +1,16 @@
-var cellNumber = 25;
-var currentNumber;
-var currentNumberElement = document.getElementById("current-number");
+var nextNumber;
+var nextNumberElement = document.getElementById("current-number");
 var mainBoard = document.getElementById("main-board");
 var startButton = document.getElementById("start-button");
 var listNumber = [];
 
 function start() {
-    var startButton = document.getElementById("start-button");
     startButton.style.visibility = "hidden";
 
-    currentNumber = 0;
-    currentNumberElement.innerText = currentNumber;
+    nextNumber = 1;
+    nextNumberElement.innerText = nextNumber;
 
-    for(var i = 0; i < cellNumber; i++) {
+    for(var i = 0; i < 25; i++) {
         listNumber.push(i + 1);
     }
 
@@ -32,11 +30,11 @@ function start() {
 
 function checkNumber(event) {
     var num = event.target.innerText;
-    if(num == (currentNumber + 1)) {
-        currentNumber++;
-        currentNumberElement.innerText = currentNumber;
+    if(num == nextNumber) {
+        nextNumber++;
+        nextNumberElement.innerText = nextNumber;
         event.target.style.visibility = "hidden";
-        if(num == cellNumber) {
+        if(num == 25) {
             alert("クリア！！");
         }
     }

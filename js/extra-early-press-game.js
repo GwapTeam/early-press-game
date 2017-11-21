@@ -1,8 +1,7 @@
-var cellNumber = 25;
 var startTime;
 var nowTime;
-var currentNumber;
-var currentNumberElement = document.getElementById("current-number");
+var nextNumber;
+var nextNumberElement = document.getElementById("current-number");
 var mainBoard = document.getElementById("main-board");
 var startButton = document.getElementById("start-button");
 var listNumber = [];
@@ -15,10 +14,10 @@ function start() {
     for(var i = 0; i < length; i++) {
         mainBoard.deleteRow(0);
     }
-    currentNumber = 0;
-    currentNumberElement.innerText = currentNumber;
+    nextNumber = 1;
+    nextNumberElement.innerText = nextNumber;
 
-    for(var i = 0; i < cellNumber; i++) {
+    for(var i = 0; i < 25; i++) {
         listNumber.push(i + 1);
     }
 
@@ -38,11 +37,11 @@ function start() {
 
 function checkNumber(event) {
     var num = event.target.innerText;
-    if(num == (currentNumber + 1)) {
-        currentNumber++;
-        currentNumberElement.innerText = currentNumber;
+    if(num == nextNumber) {
+        nextNumber++;
+        nextNumberElement.innerText = nextNumber;
         event.target.style.visibility = "hidden";
-        if(num == cellNumber) {
+        if(num == 25) {
             finish();
         }
     }
@@ -50,8 +49,7 @@ function checkNumber(event) {
 
 function finish() {
     nowTime = new Date().getTime();
-    var playTime = (nowTime - startTime).toString();
-    playTime = playTime.substring(0, playTime.length - 3);
+    var playTime = (nowTime - startTime) / 1000
     alert(playTime + "秒でクリア！！");
     startButton.style.visibility = "visible";
 }
