@@ -10,7 +10,7 @@ function start() {
     startButton.style.visibility = "hidden";
     startTime = new Date().getTime();
 
-    for(var i = 0; i < mainBoard.rows.length; i++) {
+    for(var i = 0; i < 5; i++) {
         mainBoard.deleteRow(0);
     }
     nextNumber = 1;
