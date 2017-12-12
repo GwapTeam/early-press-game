@@ -1,3 +1,5 @@
+var startTime;
+var nowTime;
 var nextNumber;
 var nextNumberElement = document.getElementById("current-number");
 var mainBoard = document.getElementById("main-board");
@@ -6,7 +8,11 @@ var listNumber = [];
 
 function start() {
     startButton.style.visibility = "hidden";
+    startTime = new Date().getTime();
 
+    for(var i = 0; i < mainBoard.rows.length; i++) {
+        mainBoard.deleteRow(0);
+    }
     nextNumber = 1;
     nextNumberElement.innerText = nextNumber;
 
@@ -35,11 +41,14 @@ function checkNumber(event) {
         nextNumberElement.innerText = nextNumber;
         event.target.style.visibility = "hidden";
         if(num == 25) {
-            alert("クリア！！");
+            finish();
         }
     }
 }
 
 function finish() {
-
+    nowTime = new Date().getTime();
+    var playTime = (nowTime - startTime) / 1000
+    alert(playTime + "秒でクリア！！");
+    startButton.style.visibility = "visible";
 }
